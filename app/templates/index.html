@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA Appointment Reminder</title>
+</head>
+    <body>
+    <h1>VA Appointments</h1>
+
+    <form method="POST" action="/add">
+        <input type="text" name="title" placeholder="Appointment Title" required>
+        <input type="text" name="location" placeholder="Location">
+        <input type="datetime-local" name="appointment_date" required>
+        <button type="submit">Add Appointment</button>
+    </form>
+
+    <hr>
+
+    <ul>
+        {% for appt in appointments %}
+            <li>
+                <strong>{{ appt.title }}</strong> — {{ appt.location }} —
+                {{ appt.appointment_date.strftime('%Y-%m-%d %H:%M') }}
+            </li>
+        {% else %}
+            <li>No appointments yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
